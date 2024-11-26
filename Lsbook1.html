@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader</title>
+    <style>
+        /* Full-screen PDF viewer styling */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            
+        }
+         /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal button:hover {
+            background-color: #45a049;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #ffffff; /* Default background color for the iframe */
+        }
+    </style>
+</head>
+<body>
+    <iframe id="pdfViewer" src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://writtensermon.com.ng/wp-content/uploads/EBOOKS/CATEGORYSSSSSSSSSSSSSSSSSSSSSSS/LEADERSHIP/10%20Principal%20Secrets%20Of%20Principal%20People_Paul%20Enenche%20(Naijasermons.com.ng).pdf" allowfullscreen></iframe>
+<div id="noConnectionModal" class="modal">
+        <div class="modal-content">
+            <p>No Internet Connection or the connection is poor.</p>
+            <button id="tryAgainButton">Try Again</button>
+        </div>
+    <script>
+         // Function to check network status
+        function checkConnection() {
+            if (navigator.onLine) {
+                // If the connection is back, hide the modal
+                document.getElementById('noConnectionModal').style.display = 'none';
+            } else {
+                // If no connection, display the modal
+                document.getElementById('noConnectionModal').style.display = 'flex';
+            }
+        }
+
+        // Event listener to check connection status when the page loads
+        window.addEventListener('load', checkConnection);
+
+        // Event listener to check connection when the network status changes
+        window.addEventListener('online', checkConnection);
+        window.addEventListener('offline', checkConnection);
+
+        // Try Again button functionality
+        document.getElementById('tryAgainButton').addEventListener('click', () => {
+            checkConnection();  // Recheck the network connection
+        });
+        // Set the PDF URL directly in the JavaScript if needed
+        document.getElementById('pdfViewer').src = "https://drive.google.com/viewerng/viewer?embedded=true&url=https://writtensermon.com.ng/wp-content/uploads/EBOOKS/CATEGORYSSSSSSSSSSSSSSSSSSSSSSS/LEADERSHIP/10%20Principal%20Secrets%20Of%20Principal%20People_Paul%20Enenche%20(Naijasermons.com.ng).pdf";
+    </script>
+</body>
+      </html>
+  
