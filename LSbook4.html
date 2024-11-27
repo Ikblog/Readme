@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader</title>
+    <style>
+        /* Full-screen PDF viewer styling */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Loading spinner styles */
+        #loadingSpinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 2000;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #ffffff; /* Default background color for the iframe */
+        }
+    </style>
+</head>
+<body>
+    <div id="loadingSpinner"></div>
+
+    <!-- Embed the PDF within an iframe -->
+    <iframe 
+        id="pdfViewer" 
+        src="https://docs.google.com/gview?embedded=true&url=https://writtensermon.com.ng/wp-content/uploads/EBOOKS/CATEGORYSSSSSSSSSSSSSSSSSSSSSSS/LEADERSHIP/Becoming%20A%20Leader%20-%20Myles%20Munroe%20(Naijasermons.com.ng).pdf" 
+        allowfullscreen>
+    </iframe>
+
+    <script>
+        // Show the loading spinner when the page loads
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const pdfViewer = document.getElementById('pdfViewer');
+
+        pdfViewer.addEventListener('load', () => {
+            // Hide the loading spinner once the PDF is fully loaded
+            loadingSpinner.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
